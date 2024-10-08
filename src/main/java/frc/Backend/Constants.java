@@ -145,7 +145,7 @@ public final class Constants {
     public static final double INTAKE_DEADBAND = 0.05;
     public static final double INTAKE_SCALING_FACTOR = 0.8;
     public static final int INTAKE_SHOOTER_BUTTON = 5;
-    public static final double INTAKE_OUTTAKE_SPEED = 0.5;
+    public static final double INTAKE_OUTTAKE_SPEED = 1;
 
     //Shooter Constants
     public static final int SHOOTER_LEFT_MOTOR = 25;

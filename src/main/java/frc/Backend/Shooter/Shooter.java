@@ -44,7 +44,7 @@ public class Shooter extends SubsystemBase {
 		ShooterLeft.setPeriodicFramePeriod(PeriodicFrame.kStatus6, 200);
 	}
 
-	public static void on(double setPoint) {
+	public static void shoot(double setPoint) {
 		ShooterRight.set(-setPoint);
 		ShooterLeft.set(setPoint);
 	}

@@ -22,12 +22,12 @@ public class Pivot extends SubsystemBase {
     Intake,
     Amp
   }
-  CANSparkMax PivotRightMotor = new CANSparkMax(Constants.PIVOT_MOTOR_RIGHT, MotorType.kBrushless);
-  CANSparkMax PivotLeftMotor = new CANSparkMax(Constants.PIVOT_MOTOR_LEFT, MotorType.kBrushless);
-  PIDController controllerRight = new PIDController(0.006, 0.0, 0.00);
-  PIDController controllerLeft = new PIDController(0.006, 0.0, 0.00);
-  DutyCycleEncoder RightThroughbore = new DutyCycleEncoder(Constants.PIVOT_ENCODER_RIGHT);
-  DutyCycleEncoder LeftThroughbore = new DutyCycleEncoder(Constants.PIVOT_ENCODER_LEFT);
+  static CANSparkMax  PivotRightMotor = new CANSparkMax(Constants.PIVOT_MOTOR_RIGHT, MotorType.kBrushless);
+  static CANSparkMax PivotLeftMotor = new CANSparkMax(Constants.PIVOT_MOTOR_LEFT, MotorType.kBrushless);
+  static PIDController controllerRight = new PIDController(0.003, 0.0, 0.00);
+  static PIDController controllerLeft = new PIDController(0.003, 0.0, 0.00);
+  static DutyCycleEncoder RightThroughbore = new DutyCycleEncoder(Constants.PIVOT_ENCODER_RIGHT);
+  static DutyCycleEncoder LeftThroughbore = new DutyCycleEncoder(Constants.PIVOT_ENCODER_LEFT);
   {
     RightThroughbore.setPositionOffset(Constants.PIVOT_OFFSET_RIGHT);
     LeftThroughbore.setPositionOffset(Constants.PIVOT_OFFSET_LEFT);
@@ -37,12 +37,12 @@ public class Pivot extends SubsystemBase {
     PivotRightMotor.setIdleMode(IdleMode.kBrake);
   }
 
-  public void pivot(double speed){
+  public static void pivot(double speed){
     PivotRightMotor.set(speed*Constants.PIVOT_SCALING_FACTOR);
     PivotLeftMotor.set(-speed*Constants.PIVOT_SCALING_FACTOR);
   }
   
-  public void pivotToPosition( Pivot.PivotTarget target) {
+  public static void pivotToPosition( Pivot.PivotTarget target) {
     double leftSetpoint = 0; 
     double rightSetpoint = 0;
     if(target == PivotTarget.Intake){
@@ -62,10 +62,10 @@ public class Pivot extends SubsystemBase {
     SmartDashboard.putNumber("rs", rightSetpoint);
     SmartDashboard.putNumber("ls", leftSetpoint);
   }
-  private double getRightPosition(){
+  private static double getRightPosition(){
     return RightThroughbore.getDistance();
   }
-  private double getLeftPosition(){
+  private static double getLeftPosition(){
     return LeftThroughbore.getDistance();
   }
 

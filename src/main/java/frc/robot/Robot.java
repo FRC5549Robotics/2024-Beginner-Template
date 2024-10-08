@@ -5,9 +5,17 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
+import frc.Backend.Constants;
 import frc.Backend.Drivetrain.Drivetrain;
+import frc.Backend.Indexer.Indexer;
+import frc.Backend.Intake.Intake;
+import frc.Backend.Shooter.Shooter;
+import frc.Backend.Pivot.Pivot;
+import frc.Backend.Pivot.Pivot.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -20,6 +28,8 @@ public class Robot extends TimedRobot {
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
+  private final CommandXboxController m_controller = new CommandXboxController(Constants.DRIVE_CONTROLLER);
+  
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -73,14 +83,18 @@ public class Robot extends TimedRobot {
     }
   }
 
+  Timer timer = new Timer();
   /** This function is called once when teleop is enabled. */
   @Override
-  public void teleopInit() {}
+  public void teleopInit() {
+    timer.start();
+  }
 
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
   }
+  
 
   /** This function is called once when the robot is disabled. */
   @Override
